@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import  { useEffect, useState } from 'react';
 
 import { Helmet } from 'react-helmet';
 
@@ -15,6 +15,8 @@ import ProcessingModal from './components/ProcessingModal';
 
 import ToolOptionsModal from './components/ToolOptionsModal';
 import { toast } from 'sonner';
+import MobileShare from './components/share/MobileShare';
+import TabShare from './components/share/TabShare';
 
 
 
@@ -88,14 +90,10 @@ function App() {
 
     if (!uploadedFile) {
 
-     
-
          toast.info("🤔 No audio file!", {
        desciption:  "Please upload an audio file first to use a tool.",
-       
+
       })
-
-
       return;
 
     }
@@ -128,6 +126,22 @@ function App() {
 
   }
 
+   const [deviceType, setDeviceType] = useState("big");
+
+  useEffect(() => {
+    const handleResize = () => {
+      setDeviceType(window.innerWidth < 1024 ? "small" : "big");
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+ 
 
  
 
@@ -212,6 +226,8 @@ function App() {
 
       />
 
+
+ {deviceType === "small" ? <MobileShare /> : <TabShare />} 
 
 
     </div>
