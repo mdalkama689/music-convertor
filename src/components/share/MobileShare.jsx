@@ -7,11 +7,10 @@ import { Link } from "react-router-dom";
 const MobileShare = () => {
   const [isClicked, setIsClicked] = useState(false);
 const whatsappMessage = encodeURIComponent(
-  "I found this amazing music converter tool, check it out: https://seosaurus.in/tools/music-convertor/"
+  "I found this amazing audio toolkit, check it out: https://seosaurus.in/tools/audio-toolkit/"
 );
 
-const toolUrl = "https://seosaurus.in/tools/music-convertor/";
- 
+const toolUrl = "hhttps://seosaurus.in/tools/audio-toolkit/";
 
   const handleClick = () => {
     setIsClicked(!isClicked);
